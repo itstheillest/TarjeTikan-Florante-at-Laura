@@ -1,0 +1,359 @@
+/* ============================================
+   RESET AND BASE STYLES
+   ============================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* ============================================
+   MAIN CONTAINER
+   ============================================ */
+.main-container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+}
+
+/* ============================================
+   BANNERS CONTAINER
+   ============================================ */
+.banners-container {
+    display: flex;
+    gap: 0;
+    width: 100%;
+    max-width: 100%;
+    height: 100vh;
+    justify-content: center;
+    align-items: stretch;
+}
+
+/* ============================================
+   BANNER CARD BASE STYLES
+   ============================================ */
+.banner-card {
+    position: relative;
+    flex: 1;
+    width: 25%;
+    height: 100vh;
+    border-radius: 0;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    box-shadow: none;
+    border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.banner-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+    z-index: 10;
+}
+
+/* Banner background image */
+.banner-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: transform 0.4s ease;
+}
+
+.banner-card:hover .banner-background {
+    transform: scale(1.1);
+}
+
+/* Semi-transparent overlay for text readability */
+.banner-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.3) 0%,
+        rgba(0, 0, 0, 0.1) 50%,
+        rgba(0, 0, 0, 0.5) 100%
+    );
+    z-index: 1;
+}
+
+/* Banner content container */
+.banner-content {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 2rem 1rem;
+}
+
+/* ============================================
+   BANNER TITLE (Script-style font)
+   ============================================ */
+.banner-title {
+    /* CHANGE FONT FAMILY HERE: */
+    font-family: 'Great Vibes', cursive;  /* Options: 'Great Vibes', 'Playfair Display', 'Dancing Script', etc. */
+    
+    /* CHANGE FONT SIZE HERE: */
+    font-size: clamp(1.8rem, 3vw, 2.8rem);
+    
+    /* CHANGE FONT COLOR HERE: */
+    color: #ffffff;  /* Change to any color: #000000 (black), #f1c40f (gold), etc. */
+    
+    /* CHANGE TEXT SHADOW HERE: */
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);  /* Format: x-offset y-offset blur color */
+    
+    text-align: center;
+    line-height: 1.2;
+    margin-top: 1rem;
+    
+    /* Optional: Add font weight */
+    font-weight: 400;  /* 400 = normal, 600 = semi-bold, 700 = bold */
+    
+    /* Optional: Add letter spacing */
+    letter-spacing: 1px;  /* Increase for more spacing between letters */
+}
+
+/* ============================================
+   THEME-BASED TITLE COLORS
+   ============================================ */
+
+.banner-card[data-theme="forest"] .banner-title {
+    color: #d5bf7d;
+}
+
+.banner-card[data-theme="ocean"] .banner-title {
+    color: #0b0f11;
+}
+
+.banner-card[data-theme="volcano"] .banner-title {
+    color: #db8942;
+}
+
+.banner-card[data-theme="celestial"] .banner-title {
+    color: #e0e0e0;
+}
+
+
+/* ============================================
+   CHAPTER RIBBON (IMAGE-BASED)
+   ============================================ */
+.chapter-ribbon {
+    position: relative;
+    width: auto;
+    max-width: 90%;
+    height: auto;
+    margin-top: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.chapter-ribbon img {
+    width: 100%;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5));
+}
+
+.banner-card:hover .chapter-ribbon {
+    transform: scale(1.05);
+}
+
+/* ============================================
+   ENTER BUTTON (Pumasok)
+   ============================================ */
+.enter-button {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.2rem, 2vw, 1.6rem);
+    font-weight: 600;
+    font-style: italic;
+    color: #ffffff;
+    padding: 0.8rem 2.5rem;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    text-transform: none;
+    letter-spacing: 1px;
+    margin-top: auto;
+    margin-bottom: 1rem;
+    position: relative;  /* ← ADD THIS */
+    
+    /* 3D effect - shadow layer at bottom-right */
+    box-shadow: 
+        6px 6px 0px rgba(0, 0, 0, 0.3),  /* Bottom-right shadow */
+        0 5px 15px rgba(0, 0, 0, 0.4);    /* Depth shadow */
+}
+
+.enter-button:hover {
+    transform: translate(-2px, -2px);  /* Move up-left on hover */
+    box-shadow: 
+        6px 6px 0px rgba(0, 0, 0, 0.3),  /* Shadow extends when lifted */
+        0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+.enter-button:active {
+    transform: translate(2px, 2px);  /* Push down-right when clicked */
+    box-shadow: 
+        2px 2px 0px rgba(0, 0, 0, 0.3),  /* Shadow shrinks when pressed */
+        0 3px 10px rgba(0, 0, 0, 0.4);
+}
+
+/* Forest button - Green shadow */
+.forest-button {
+    background: #0a714e;
+    border: 2px solid #1e8449;
+    box-shadow: 
+        4px 4px 0px rgba(158, 132, 109, 1),  
+        0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+.forest-button:hover {
+    background: #0a714e;
+    box-shadow: 
+        6px 6px 0px rgba(158, 132, 109, 1),
+        0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Athens button - Blue shadow */
+.athens-button {
+    background: #0081cc;
+    border: 2px solid #1f618d;
+    box-shadow: 
+        4px 4px 0px rgba(158, 132, 109, 1),  
+        0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+.athens-button:hover {
+    background: #0081cc;
+    box-shadow: 
+        6px 6px 0px rgba(158, 132, 109, 1),
+        0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* War button - Red shadow */
+.war-button {
+    background: #8a1f1a;
+    border: 2px solid #922b21;
+    box-shadow: 
+        4px 4px 0px rgba(0, 0, 0, 1),  
+        0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+.war-button:hover {
+    background: #8a1f1a;
+    box-shadow: 
+        6px 6px 0px rgba(0, 0, 0, 1),
+        0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Conclusion button - Gray shadow */
+.conclusion-button {
+    background: #52472f;
+    border: 2px solid #5d6d7e;
+    box-shadow: 
+        4px 4px 0px rgba(134, 160, 172, 1),  
+        0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+.conclusion-button:hover {
+    background: #52472f;
+    box-shadow: 
+        6px 6px 0px rgba(134, 160, 172, 1),
+        0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Active state for all buttons */
+.enter-button:active {
+    transform: translate(2px, 2px);
+}
+
+.forest-button:active { box-shadow: 2px 2px 0px rgba(30, 132, 73, 0.6), 0 3px 10px rgba(0, 0, 0, 0.4); }
+.athens-button:active { box-shadow: 2px 2px 0px rgba(31, 97, 141, 0.6), 0 3px 10px rgba(0, 0, 0, 0.4); }
+.war-button:active { box-shadow: 2px 2px 0px rgba(146, 43, 33, 0.6), 0 3px 10px rgba(0, 0, 0, 0.4); }
+.conclusion-button:active { box-shadow: 2px 2px 0px rgba(93, 109, 126, 0.6), 0 3px 10px rgba(0, 0, 0, 0.4); }
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+/* Tablet view (2 columns) */
+@media (max-width: 1024px) {
+    .banners-container {
+        flex-wrap: wrap;
+        max-width: 100%;
+    }
+
+    .banner-card {
+        flex: 1 1 50%;
+        width: 50%;
+        height: 50vh;
+        min-height: 400px;
+    }
+}
+
+/* Mobile view (vertical stack) */
+@media (max-width: 768px) {
+    .main-container {
+        padding: 0;
+    }
+
+    /* Vertical stack */
+    .banners-container {
+        flex-direction: column;
+        width: 100%;
+        max-width: 100%;
+        gap: 0;
+        height: 100vh;
+    }
+
+    .banner-card {
+        width: 100%;
+        max-width: 100%;
+        height: 25vh;
+        min-height: 200px;
+        border-right: none;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+    .banner-card {
+        height: 55vh;
+        min-height: 350px;
+    }
+
+    .banner-title {
+        font-size: 1.5rem;
+    }
+
+    .chapter-ribbon {
+        padding: 0.5rem 1.5rem;
+        font-size: 0.85rem;
+    }
+
+    .enter-button {
+        padding: 0.7rem 2rem;
+        font-size: 1.1rem;
+    }
+}

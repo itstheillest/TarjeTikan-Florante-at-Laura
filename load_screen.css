@@ -1,0 +1,224 @@
+/* ========================================
+   GLOBAL STYLES & RESET
+   ======================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #ffffff;
+}
+
+/* ========================================
+   LOADING SCREEN CONTAINER
+   ======================================== */
+
+.loading-screen {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 3vh;
+}
+
+/* ========================================
+   TITLE STYLES
+   ======================================== */
+
+.title {
+    font-family: 'Great Vibes', cursive;
+    font-size: clamp(2rem, 6vw, 4rem);
+    color: #D4AF37;
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 2vh;
+}
+
+/* ========================================
+   ICONS CONTAINER & FLOW EFFECT
+   ======================================== */
+
+.icons-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(1rem, 2vw, 2.5rem);
+    padding: 2vh 5vw;
+}
+
+/* Connecting Line - subtle line behind icons */
+.connecting-line {
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    right: 5%;
+    height: 2px;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        #E0E0E0 10%, 
+        #E0E0E0 90%, 
+        transparent 100%
+    );
+    transform: translateY(-50%);
+    z-index: 1;
+}
+
+/* Flowing Glow Effect - moves across the icons */
+.flow-glow {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(-50%, -50%);
+    width: clamp(4rem, 10vw, 6rem);
+    height: clamp(4rem, 10vw, 6rem);
+    background: radial-gradient(circle, 
+        rgba(249, 168, 37, 0.6) 0%, 
+        rgba(245, 124, 0, 0.4) 30%, 
+        rgba(212, 175, 55, 0.2) 60%, 
+        transparent 100%
+    );
+    border-radius: 50%;
+    z-index: 2;
+    pointer-events: none;
+    filter: blur(8px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.flow-glow.active {
+    opacity: 1;
+}
+
+/* Icon Circle Container */
+.icon-circle {
+    position: relative;
+    z-index: 3;
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+}
+
+/* Icon Inner Circle */
+.icon-inner {
+    width: clamp(3rem, 8vw, 5rem);
+    height: clamp(3rem, 8vw, 5rem);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+/* Active state when glow passes through */
+.icon-circle.active .icon-inner {
+    transform: scale(1.15);
+    box-shadow: 
+        0 0 20px rgba(249, 168, 37, 0.5),
+        0 0 40px rgba(245, 124, 0, 0.3),
+        0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Completed state - subtle glow remains */
+.icon-circle.completed .icon-inner {
+    box-shadow: 
+        0 0 10px rgba(249, 168, 37, 0.3),
+        0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Icon Placeholder SVG */
+.icon-placeholder {
+    width: 60%;
+    height: 60%;
+    transition: transform 0.3s ease;
+}
+
+.icon-circle.active .icon-placeholder {
+    transform: scale(1.1);
+}
+
+/* ========================================
+   LOADING TEXT
+   ======================================== */
+
+.loading-text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(0.9rem, 2vw, 1.3rem);
+    font-weight: 600;
+    color: #D4AF37;
+    letter-spacing: 0.3em;
+    text-align: center;
+    margin-top: 1vh;
+}
+
+/* Loading Percentage */
+.loading-percentage {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(0.8rem, 1.5vw, 1rem);
+    color: #757575;
+    text-align: center;
+    margin-top: -1vh;
+}
+
+/* ========================================
+   RESPONSIVE BREAKPOINTS
+   ======================================== */
+
+/* Tablet Devices */
+@media (max-width: 768px) {
+    .icons-container {
+        gap: clamp(0.8rem, 2vw, 1.5rem);
+    }
+    
+    .flow-glow {
+        width: clamp(3.5rem, 9vw, 5rem);
+        height: clamp(3.5rem, 9vw, 5rem);
+    }
+}
+
+/* Mobile Devices */
+@media (max-width: 480px) {
+    .loading-screen {
+        gap: 2vh;
+    }
+    
+    .title {
+        margin-bottom: 1vh;
+    }
+    
+    .icons-container {
+        gap: clamp(0.5rem, 3vw, 1rem);
+        padding: 2vh 3vw;
+    }
+    
+    .flow-glow {
+        width: clamp(3rem, 8vw, 4rem);
+        height: clamp(3rem, 8vw, 4rem);
+        filter: blur(6px);
+    }
+    
+    .icon-circle.active .icon-inner {
+        transform: scale(1.1);
+    }
+}
+
+/* Very Small Mobile Devices */
+@media (max-width: 360px) {
+    .icons-container {
+        gap: clamp(0.3rem, 2vw, 0.8rem);
+    }
+    
+    .connecting-line {
+        left: 2%;
+        right: 2%;
+    }
+}

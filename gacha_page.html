@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gacha Draw - Fantasy Banner</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="gacha_page.css">
+</head>
+<body>
+    <!-- Background -->
+    <div class="background-container">
+        <div class="background-overlay"></div>
+    </div>
+
+    <!-- Main Container -->
+    <main class="main-container">
+        <!-- Top Navigation Bar -->
+        <nav class="top-nav">
+            <button class="nav-button back-button" id="backBtn" aria-label="Go back">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+            </button>
+
+            <div class="center-info">
+                <span class="energy-icon" id="cheatBtn" role="button" tabindex="0" aria-label="Secret cheat input">⚡</span>
+                <div class="energy-bar-container-top">
+                    <div class="energy-bar-fill-top" id="energyBarFillTop"></div>
+                </div>
+                <span class="energy-text-top" id="energyTextTop">5/5</span>
+                <div class="divider"></div>
+                <span class="countdown-icon">⏱️</span>
+                <span class="countdown-time" id="countdownTimer">00:00:00</span>
+            </div>
+
+            <button class="nav-button inventory-button" id="inventoryBtn" aria-label="Open inventory">KOLEKSYON </button>
+
+        </nav>
+
+        <!-- Main Content Panel -->
+        <section class="content-panel">
+            <div class="banner-display">
+                <div class="showcase-area">
+                    <div class="showcase-glow"></div>
+                    <img src="images/banner_showcase.png" alt="Banner Showcase" class="showcase-image" id="showcaseImage">
+                </div>
+            </div>
+        </section>
+
+        <!-- Bottom Action Bar -->
+        <div class="bottom-nav">
+            <div class="info-buttons">
+                <button class="action-button info-button" id="detalyeBtn">   DETALYE   </button>
+                <button class="action-button info-button" id="historyaBtn">HISTORYA</button>
+            </div>
+
+            <div class="draw-buttons">
+                <button class="action-button draw-button" id="draw1Btn" data-cost="1">
+                    <span class="button-label">KOLEKTA (I)</span>
+                </button>
+                <button class="action-button draw-button" id="draw5Btn" data-cost="5">
+                    <span class="button-label">KOLEKTA (V)</span>
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Modal: Detalye (Rates) -->
+<!-- Modal Detalye Rates -->
+<div class="modal" id="detalyeModal" role="dialog" aria-labelledby="ratesTitle" aria-hidden="true">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2 id="ratesTitle">KADALASAN NG MAKUKUHA</h2>
+      <button class="modal-close" data-modal="detalyeModal" aria-label="Close">&times;</button>
+    </div>
+
+    <div class="modal-body" id="ratesBody">
+      <!-- Filled dynamically by gacha_page.js -->
+    </div>
+  </div>
+</div>
+
+
+    <!-- Modal: Historya (History) -->
+    <div class="modal" id="historyaModal" role="dialog" aria-labelledby="historyTitle" aria-hidden="true">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="historyTitle">KASAYSAYAN NG PAGKUHA</h2>
+                <button class="modal-close" data-modal="historyaModal" aria-label="Close">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="history-list" id="historyList">
+                    <p class="no-history">No draws yet. Start collecting!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal: Inventory -->
+<div class="modal" id="inventoryModal" role="dialog" aria-labelledby="inventoryTitle" aria-hidden="true">
+  <div class="modal-content inventory-modal">
+    <!-- Layer 1 -->
+    <div class="modal-header inventory-header">
+      <h2 id="inventoryTitle">KOLEKSYON</h2>
+      <button class="modal-close" data-modal="inventoryModal" aria-label="Close">&times;</button>
+    </div>
+
+    <!-- Layer 2 -->
+    <div class="inventory-toolbar">
+      <button class="action-button info-button" id="inventorySettingsBtn" type="button"></button>
+
+      <input
+        id="inventorySearchInput"
+        type="text"
+        placeholder="Maghanap ng Tarjete..."
+        autocomplete="off"
+      />
+    </div>
+
+    <!-- Layer 3 -->
+    <div class="modal-body">
+      <div class="inventory-grid" id="inventoryGrid"></div>
+    </div>
+  </div>
+</div>
+
+    <!-- Settings Panel (new modal) -->
+    <div class="modal" id="inventorySettingsModal" role="dialog" aria-labelledby="inventorySettingsTitle" aria-hidden="true">
+        <div class="modal-content inventory-settings-modal">
+            <div class="modal-header">
+                <h2 id="inventorySettingsTitle">KALAGAYAN</h2>
+                <button class="modal-close" data-modal="inventorySettingsModal" aria-label="Close">&times;</button>
+            </div>
+
+            <div class="modal-body inventory-settings-body">
+                <div class="settings-row">
+                <div class="settings-label">Isuri</div>
+                    <div class="settings-checks" id="invSortGroup">
+                        <label class="check-item">
+                            <input type="radio" name="invSort" value="az">
+                                A–Z
+                        </label>
+                        <label class="check-item">
+                            <input type="radio" name="invSort" value="za">
+                                Z–A
+                        </label>
+                </div>
+            </div>
+
+            <br>
+
+            <div class="settings-row">
+                <div class="settings-label">Uri ng Tarjete</div>
+                <div class="settings-checks" id="invTypeGroup">
+                    <label class="check-item"><input type="radio" name="invType" value="all"> Lahat</label>
+                    <label class="check-item"><input type="radio" name="invType" value="TAO"> Tauhan</label>
+                    <label class="check-item"><input type="radio" name="invType" value="TT"> Tagatulong</label>
+                    <label class="check-item"><input type="radio" name="invType" value="TG"> Tagpuan</label>
+                    <label class="check-item"><input type="radio" name="invType" value="KG"> Kagamitan</label>
+                    <label class="check-item"><input type="radio" name="invType" value="FATAO"> Bihirang Tarjete</label>
+                </div>
+            </div>
+
+
+            <br>
+                <div class="settings-row">
+                    <div class="settings-label">Ipakita</div>
+                        <div class="settings-checks" id="invShowGroup">
+                            <label class="check-item"><input type="radio" name="invShow" value="all"> Lahat</label>
+                            <label class="check-item"><input type="radio" name="invShow" value="owned"> Meron na</label>
+                            <label class="check-item"><input type="radio" name="invShow" value="unowned"> Wala pa</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Result Display Overlay -->
+    <div class="result-overlay" id="resultOverlay" role="dialog" aria-labelledby="resultTitle" aria-hidden="true">
+        <div class="result-container">
+            <h2 class="result-title" id="resultTitle">RESULTA NG PAGKUHA</h2>
+            <div class="result-cards" id="resultCards"></div>
+            <button class="action-button" id="closeResultBtn">CONTINUE</button>
+        </div>
+    </div>
+
+    <!-- Card Viewer Modal (click outside to close) -->
+    <div class="modal" id="cardViewerModal" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="modal-body">
+                <img id="cardViewerImage" alt="Card preview" />
+            </div>
+        </div>
+    </div>
+
+    <script src="cards.js"></script>
+    <script src="gacha_page.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Florante & Laura - Loading</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="load_screen.css">
+</head>
+<body>
+    <!-- Loading Screen Container -->
+    <div class="loading-screen">
+        
+        <!-- Title -->
+        <h1 class="title">Florante & Laura</h1>
+        
+        <!-- Icons with Flow Effect -->
+        <div class="icons-container">
+            
+            <!-- Connecting Line (behind icons) -->
+            <div class="connecting-line"></div>
+            
+            <!-- Flowing Glow Effect -->
+            <div class="flow-glow" id="flowGlow"></div>
+            
+            <!-- Icon Circles -->
+            <div class="icon-circle" data-index="0">
+                <div class="icon-inner" style="background-color: #1976D2;">
+                    <img src="Images/1-hustisya.png" alt="Icon" class="icon-placeholder">
+                </div>
+            </div>
+            
+            <div class="icon-circle" data-index="1">
+                <div class="icon-inner" style="background-color: #000000;">
+                    <img src="Images/2-kadiliman.png" alt="Icon" class="icon-placeholder">
+                </div>
+            </div>
+            
+            <div class="icon-circle" data-index="2">
+                <div class="icon-inner" style="background-color: #545454;">
+                    <img src="Images/3-panlilinlang.png" alt="Icon" class="icon-placeholder">  
+                </div>
+            </div>
+            
+            <div class="icon-circle" data-index="3">
+                <div class="icon-inner" style="background-color: #cc0000;">
+                    <img src="Images/4-pagmamahal.png" alt="Icon" class="icon-placeholder">               
+                </div>
+            </div>
+            
+            <div class="icon-circle" data-index="4">
+                <div class="icon-inner" style="background-color: #ff751f;">
+                    <img src="Images/5-katapangan.png" alt="Icon" class="icon-placeholder">
+                </div>
+            </div>
+            
+            <div class="icon-circle" data-index="5">
+                <div class="icon-inner" style="background-color: #ffd21f;">
+                    <img src="Images/6-karangalan.png" alt="Icon" class="icon-placeholder">
+                </div>
+            </div>
+            
+            <div class="icon-circle" data-index="6">
+                <div class="icon-inner" style="background-color: #0a714e;">
+                    <img src="Images/7-kasakiman.png" alt="Icon" class="icon-placeholder">
+                </div>
+            </div>
+        </div>
+        
+        <!-- Loading Text -->
+        <p class="loading-text">MAGHINTAY</p>
+        
+        <!-- Loading Percentage (Optional) -->
+        <p class="loading-percentage" id="loadingPercentage">0%</p>
+        
+    </div>
+    
+    <script src="load_screen.js"></script>
+</body>
+</html>
