@@ -52,7 +52,7 @@ async function preloadCritical() {
     const images = cards.map(c => c.image).filter(Boolean);
 
     // Also preload common UI images you always use
-    images.push("/Cards/CARD_BACK_ART.png");
+    images.push("Cards/CARD_BACK_ART.png");
 
     await Promise.allSettled(images.map(preloadImage));
 }
@@ -327,3 +327,4 @@ function onLoadingComplete() {
     }, TRANSITION_DELAY);
 
 }
+
